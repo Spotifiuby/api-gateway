@@ -1,6 +1,6 @@
 const ROUTES = [
   {
-    url: '/free',
+    url: '/users-api/',
     auth: false,
     creditCheck: false,
     rateLimit: {
@@ -8,22 +8,22 @@ const ROUTES = [
       max: 5
     },
     proxy: {
-      target: "https://www.google.com",
+      target: "https://spotifiuby-backend-users.herokuapp.com/",
       changeOrigin: true,
       pathRewrite: {
-        [`^/free`]: '',
+        [`^/users-api`]: '',
       },
     }
   },
   {
-    url: '/premium',
-    auth: true,
-    creditCheck: true,
+    url: '/songs-api/',
+    auth: false,
+    creditCheck: false,
     proxy: {
-      target: "https://www.google.com",
+      target: "https://spotifiuby-backend-songs.herokuapp.com",
       changeOrigin: true,
       pathRewrite: {
-        [`^/premium`]: '',
+        [`^/songs-api`]: '',
       },
     }
   }
