@@ -19,6 +19,7 @@ const authMiddleware = (req, res, next) => {
 }
 
 const setupAuth = (app, routes) => {
+  app.post('/validate-session', authMiddleware);
   routes.forEach(r => {
     if (r.auth) {
       app.use(r.url, authMiddleware);
