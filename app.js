@@ -4,8 +4,16 @@ const port = process.env.PORT || 8080;
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const {ROUTES} = require("./routes/routes");
+const env        = require('dotenv');
+
+console.log(process.env.NODE_ENV);
+
+const path = require("path");
+env.config({ path: path.resolve(__dirname, process.env.NODE_ENV !== 'production' ? '.env.local' : '.env') });
+
 const {setupRateLimit} = require("./ratelimit/ratelimit");
 const {setupProxies} = require("./proxy");
+const {setupAuth} = require("./auth/auth")
 
 const app = express();
 
@@ -14,6 +22,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+setupAuth(app, ROUTES);
 setupRateLimit(app, ROUTES);
 setupProxies(app, ROUTES);
 
@@ -21,17 +30,6 @@ setupProxies(app, ROUTES);
 app.use((req, res, next) => {
   next(createError(404));
 });
-
-/*// error handler
-app.use((err, req, res, next) => {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});*/
 
 app.listen(port, () => {
   logger(`Server app listening at http://localhost:${port}`)

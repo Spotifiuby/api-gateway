@@ -17,7 +17,7 @@ const ROUTES = [
   },
   {
     url: '/songs-api/',
-    auth: false,
+    auth: true,
     creditCheck: false,
     proxy: {
       target: "https://spotifiuby-backend-songs.herokuapp.com",
