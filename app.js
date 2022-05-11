@@ -6,8 +6,6 @@ const logger = require('morgan');
 const {ROUTES} = require("./routes/routes");
 const env        = require('dotenv');
 
-console.log(process.env.NODE_ENV);
-
 const path = require("path");
 env.config({ path: path.resolve(__dirname, process.env.NODE_ENV !== 'production' ? '.env.local' : '.env') });
 
