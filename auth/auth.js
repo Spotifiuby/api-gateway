@@ -11,11 +11,15 @@ const authMiddleware = (req, res, next) => {
   }
 
   const token = headerToken.split(" ")[1];
+  console.log(token);
   firebase
     .auth()
     .verifyIdToken(token)
     .then(() => next())
-    .catch(() => res.status(403).send({ message: "Could not authorize" }).end());
+    .catch(error => {
+      console.log(JSON.stringify(error));
+      res.status(403).send({message: "Could not authorize"})
+    });
 }
 
 const setupAuth = (app, routes) => {
