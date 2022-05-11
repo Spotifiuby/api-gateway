@@ -14,7 +14,7 @@ const authMiddleware = (req, res, next) => {
   firebase
     .auth()
     .verifyIdToken(token)
-    .then(() => req.path.contains("validate-session") ? res.end() : next())
+    .then(() => req.path.includes("validate-session") ? res.end() : next())
     .catch(error => {
       console.log(JSON.stringify(error));
       res.status(403).send({message: "Could not authorize"})
