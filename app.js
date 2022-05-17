@@ -16,6 +16,19 @@ const {setupAuth} = require("./auth/auth")
 
 const app = express();
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Credentials', "true");
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With,' +
+      ' X-HTTP-Method-Override, Content-Type, Accept, Authorization, api_key, token');
+  if ('OPTIONS' === req.method) {
+    res.sendStatus(200);
+  } else {
+    next();
+  }
+});
+
 app.use(cors());
 
 app.use(logger('combined'));
