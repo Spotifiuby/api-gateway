@@ -13,6 +13,9 @@ const ROUTES = [
       pathRewrite: {
         [`^/users-api`]: '',
       },
+      onProxyRes: function (proxyRes, req, res) {
+        proxyRes.headers['Access-Control-Allow-Origin'] = '*';
+      },
     }
   },
   {
@@ -24,6 +27,9 @@ const ROUTES = [
       changeOrigin: true,
       pathRewrite: {
         [`^/songs-api`]: '',
+      },
+      onProxyRes: function (proxyRes, req, res) {
+        proxyRes.headers['Access-Control-Allow-Origin'] = '*';
       },
     }
   }
