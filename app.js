@@ -3,6 +3,7 @@ const express = require('express');
 const port = process.env.PORT || 8080;
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const cors = require('cors');
 const {ROUTES} = require("./routes/routes");
 const env        = require('dotenv');
 
@@ -14,6 +15,8 @@ const {setupProxies} = require("./proxy");
 const {setupAuth} = require("./auth/auth")
 
 const app = express();
+
+app.use(cors());
 
 app.use(logger('combined'));
 app.use(express.json());
