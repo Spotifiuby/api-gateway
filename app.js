@@ -16,7 +16,12 @@ const {setupAuth} = require("./auth/auth")
 
 const app = express();
 
-app.use(cors());
+const corsConfig = {
+  credentials: true,
+  origin: true,
+};
+
+app.use(cors(corsConfig));
 
 app.use(logger('combined'));
 app.use(express.json());
