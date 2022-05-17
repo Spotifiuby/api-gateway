@@ -19,7 +19,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(cors(corsConfig));
+app.use(cors());
 
 (function configureSession(app) {
   const heroku = process.env.PROD || false;
