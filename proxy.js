@@ -7,6 +7,7 @@ const proxy = (config) => {
       .reduce((prev, current) => prev.replace(current, config.pathRewrite[current]), req.originalUrl);
     const url = `${config.target}${originalUrl}`;
     console.log("Proxy:", url);
+    console.log("Proxy method:", req.method);
     const proxiedHeaders = req.headers;
     console.log("Proxied Headers", proxiedHeaders);
     superagent(req.method, url)
@@ -18,12 +19,13 @@ const proxy = (config) => {
     }).send(JSON.stringify(req.body))
     .then(result => {
       res.status(result.status);
-      res.json(result.data);
+      res.json(result.data).end();
     })
     .catch(error => {
+      console.log(error);
       const { response } = error;
       res.status(response?.status || 500);
-      res.json(response?.data || "Proxy Failure");
+      res.json(response?.data || "Proxy Failure").end();
     })
   };
 }

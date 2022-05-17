@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(cors());
 
-(function configureSession(app) {
+/*(function configureSession(app) {
   const heroku = process.env.PROD || false;
   let cookie = null;
   if (heroku) {
@@ -38,7 +38,7 @@ app.use(cors());
         cookie: cookie,
       })
   );
-})(app);
+})(app);*/
 
 app.use(logger('combined'));
 app.use(cookieParser());
