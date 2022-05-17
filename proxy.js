@@ -8,24 +8,21 @@ const proxy = (config) => {
     const url = `${config.target}${originalUrl}`;
     console.log("Proxy:", url);
     console.log("Proxy method:", req.method);
-    const proxiedHeaders = req.headers;
-    console.log("Proxied Headers", proxiedHeaders);
-    superagent(req.method, url)
+    return superagent(req.method, url)
     .set({
-      ...proxiedHeaders,
       "content-type": "application/json",
       accept: "application/json",
       "x-api-key": config.apiKey,
     }).send(JSON.stringify(req.body))
     .then(result => {
       res.status(result.status);
-      res.json(result.data).end();
+      res.json(result.body).end();
     })
     .catch(error => {
       console.log(error);
       const { response } = error;
       res.status(response?.status || 500);
-      res.json(response?.data || "Proxy Failure").end();
+      res.json(response?.body || "Proxy Failure").end();
     })
   };
 }

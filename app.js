@@ -6,7 +6,6 @@ const logger = require('morgan');
 const cors = require('cors');
 const {ROUTES} = require("./routes/routes");
 const env        = require('dotenv');
-const session = require("express-session");
 
 const path = require("path");
 env.config({ path: path.resolve(__dirname, process.env.NODE_ENV !== 'production' ? '.env.local' : '.env') });
@@ -20,25 +19,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(cors());
-
-/*(function configureSession(app) {
-  const heroku = process.env.PROD || false;
-  let cookie = null;
-  if (heroku) {
-    app.set("trust proxy", 1);
-    cookie = { secure: true, httpOnly: true, sameSite: "none", path: "/" };
-  }
-
-  app.use(
-      session({
-        secret: process.env.SESSION_SECRET,
-        saveUninitialized: true,
-        resave: true,
-        proxy: true,
-        cookie: cookie,
-      })
-  );
-})(app);*/
 
 app.use(logger('combined'));
 app.use(cookieParser());
