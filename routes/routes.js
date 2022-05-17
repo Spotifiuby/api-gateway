@@ -13,6 +13,7 @@ const ROUTES = [
       pathRewrite: {
         [`/users-api`]: '',
       },
+      apiKey: 'productionkey'
     }
   },
   {
@@ -25,6 +26,7 @@ const ROUTES = [
       pathRewrite: {
         [`/songs-api`]: '',
       },
+      apiKey: 'productionkey'
     }
   }
 ]

@@ -14,6 +14,7 @@ const proxy = (config) => {
       ...proxiedHeaders,
       "content-type": "application/json",
       accept: "application/json",
+      "x-api-key": config.apiKey,
     }).send(JSON.stringify(req.body))
     .then(result => {
       res.status(result.status);
