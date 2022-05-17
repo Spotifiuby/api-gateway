@@ -4,7 +4,7 @@ const superagent = require('superagent');
 const proxy = (config) => {
   return (req, res, next) => {
     let originalUrl = Object.keys(config.pathRewrite)
-      .reduce((prev, current) => req.originalUrl.replace(current, config.pathRewrite[current]), req.originalUrl);
+      .reduce((prev, current) => prev.replace(current, config.pathRewrite[current]), req.originalUrl);
     const url = `${config.target}${originalUrl}`;
     console.log("Proxy:", url);
     const proxiedHeaders = req.headers;

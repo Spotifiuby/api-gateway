@@ -53,5 +53,5 @@ app.use((req, res, next) => {
 });
 
 app.listen(port, () => {
-  logger(`Server app listening at http://localhost:${port}`)
+  console.log(`Server app listening at http://localhost:${port}`)
 })

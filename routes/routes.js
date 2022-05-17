@@ -11,7 +11,7 @@ const ROUTES = [
       target: "https://spotifiuby-backend-users.herokuapp.com",
       changeOrigin: true,
       pathRewrite: {
-        [`^/users-api`]: '',
+        [`/users-api`]: '',
       },
     }
   },
@@ -23,7 +23,7 @@ const ROUTES = [
       target: "https://spotifiuby-backend-songs.herokuapp.com",
       changeOrigin: true,
       pathRewrite: {
-        [`^/songs-api`]: '',
+        [`/songs-api`]: '',
       },
     }
   }
