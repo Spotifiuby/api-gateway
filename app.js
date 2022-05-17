@@ -16,16 +16,7 @@ const {setupAuth} = require("./auth/auth")
 
 const app = express();
 
-const corsOptions ={
-  origin:'*',
-  credentials:true,            //access-control-allow-credentials:true
-  optionSuccessStatus:200,
-  methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
-  allowedHeaders: ["Access-Control-Allow-Origin", "Origin", "X-Requested-With", "Content-Type", "Accept", "Authorization"]
-}
-
-app.options('*', cors(corsOptions));
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use(logger('combined'));
 app.use(express.json());
