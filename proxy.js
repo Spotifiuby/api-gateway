@@ -9,7 +9,10 @@ const FORWARDABLE_HEADERS = {
 function filterHeaders(headers) {
   return Object.keys(headers)
   .filter(header => FORWARDABLE_HEADERS[header.toLowerCase()])
-  .reduce((prev, current) => prev[current] = headers[current], {});
+  .reduce((prev, current) => {
+    prev[current] = headers[current];
+    return prev;
+  }, {});
 }
 
 const proxy = (config) => {
