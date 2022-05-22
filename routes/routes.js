@@ -13,7 +13,11 @@ const ROUTES = [
       pathRewrite: {
         [`/users-api`]: '',
       },
-      apiKey: 'productionkey'
+      allowedApiKeys: [
+          process.env.BACKOFFICE_API_KEY,
+          process.env.NATIVE_APP_API_KEY,
+          process.env.SONGS_API_KEY,
+      ]
     }
   },
   {
@@ -26,7 +30,10 @@ const ROUTES = [
       pathRewrite: {
         [`/songs-api`]: '',
       },
-      apiKey: 'productionkey'
+      allowedApiKeys: [
+        process.env.BACKOFFICE_API_KEY,
+        process.env.NATIVE_APP_API_KEY,
+      ]
     }
   }
 ]
