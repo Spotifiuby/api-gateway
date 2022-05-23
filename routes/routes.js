@@ -34,6 +34,7 @@ const ROUTES = [
       allowedApiKeys: [
         process.env.BACKOFFICE_API_KEY,
         process.env.NATIVE_APP_API_KEY,
+        'productionkey'
       ]
     }
   }
