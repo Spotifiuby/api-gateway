@@ -37,6 +37,23 @@ const ROUTES = [
         'productionkey'
       ]
     }
+  },
+  {
+    url: '/chats-api/',
+    auth: true,
+    creditCheck: false,
+    proxy: {
+      target: "https://spotifiuby-backend-chats.herokuapp.com",
+      changeOrigin: true,
+      pathRewrite: {
+        [`/chats-api`]: '',
+      },
+      allowedApiKeys: [
+        process.env.BACKOFFICE_API_KEY,
+        process.env.NATIVE_APP_API_KEY,
+        'productionkey'
+      ]
+    }
   }
 ]
 
